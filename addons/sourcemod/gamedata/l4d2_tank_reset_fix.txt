@@ -1,0 +1,62 @@
+"Games"
+{
+	"left4dead2"
+	{
+		"Offsets"
+		{
+			// Virtual function indexes. Windows values were read from server.dll; Linux
+			// values are the Windows index plus one (GCC puts two destructors in the
+			// vtable), the same pattern as the Actions extension's L4D2 gamedata.
+
+			"CBaseEntity::MyNextBotPointer"
+			{
+				"windows"	"81"
+				"linux"		"82"
+			}
+			"INextBot::GetEntity"
+			{
+				"windows"	"44"
+				"linux"		"45"
+			}
+			"INextBot::GetBodyInterface"
+			{
+				"windows"	"48"
+				"linux"		"49"
+			}
+			// Only used when the PlayerBody symbols below are not found.
+			"IBody::SetArousal"
+			{
+				"windows"	"66"
+				"linux"		"67"
+			}
+			"IBody::GetArousal"
+			{
+				"windows"	"67"
+				"linux"		"68"
+			}
+		}
+
+		"Signatures"
+		{
+			// Resets every component of a NextBot. CommandABot with BOT_CMD_RESET ends up here.
+			"INextBot::Reset"
+			{
+				"library"	"server"
+				"windows"	"\xF3\x0F\x10\x05\x2A\x2A\x2A\x2A\x56\x8B\xF1\x57\x8D\x7E\x38\xC7\x46\x10\x19\xFC\xFF\xFF"
+				"linux"		"@_ZN8INextBot5ResetEv"
+			}
+			// The body every bot player uses. Linux only: Windows calls these through the
+			// offsets above.
+			"PlayerBody::SetArousal"
+			{
+				"library"	"server"
+				"linux"		"@_ZN10PlayerBody10SetArousalEN5IBody11ArousalTypeE"
+			}
+			"PlayerBody::GetArousal"
+			{
+				"library"	"server"
+				"linux"		"@_ZNK10PlayerBody10GetArousalEv"
+			}
+		}
+	}
+}
